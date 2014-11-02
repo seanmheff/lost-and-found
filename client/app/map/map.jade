@@ -1,0 +1,5 @@
+.col-md-12
+  p This is the map view.
+
+  ui-gmap-google-map(center="map.center" zoom="map.zoom")
+    ui-gmap-marker(ng-repeat="marker in markers" coords="marker" idKey="$index")
