@@ -1,0 +1,11 @@
+.col-sm-3(ng-controller="SidebarCtrl")
+  ul.nav.nav-pills.nav-stacked
+    li.nav-header
+    li
+      a(href='#' ng-click="openMapView()")
+        i.glyphicon.glyphicon-map-marker
+        | Map
+    li
+      a(href='#' ng-click="openListView()")
+        i.glyphicon.glyphicon-list
+        | List
