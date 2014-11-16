@@ -1,3 +1,12 @@
 div(ng-include='"components/sidebar/sidebar.html"')
 .col-sm-9
   p This is the list view.
+  ul.list-group
+    li.list-group-item(ng-repeat="item in items")
+      .row
+        .col-sm-9
+          a(href='#')
+            i(ng-class="getIconClass(item.type)")
+            | {{item.heading}}
+        .col-sm-3
+          small.text-right added at {{item.time | date:'h:mm a'}}
