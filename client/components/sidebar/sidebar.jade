@@ -1,12 +1,13 @@
-.col-sm-3(ng-controller="SidebarCtrl")
-  input.form-control(ng-model='omg', placeholder='Search')
-  ul.nav.nav-pills.nav-stacked
-    li.nav-header
-    li
-      a(href='#' ng-click="openMapView()")
-        i.glyphicon.glyphicon-map-marker
-        | Map
-    li
-      a(href='#' ng-click="openListView()")
-        i.glyphicon.glyphicon-list
-        | List
+.col-sm-3.sidebar(ng-controller="SidebarCtrl")
+  input.form-control.search(ng-model='omg', placeholder='Search')
+  nav(role="navigation")
+    ul.nav.nav-pills.nav-stacked
+      li.nav-header
+      li(ng-class='{active: isActive("/map")}')
+        a(href='#' ng-click="openMapView()")
+          i.glyphicon.glyphicon-map-marker
+          | Map
+      li(ng-class='{active: isActive("/list")}')
+        a(href='#' ng-click="openListView()")
+          i.glyphicon.glyphicon-list
+          | List

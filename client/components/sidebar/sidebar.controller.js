@@ -14,4 +14,8 @@ angular.module('lostAndFoundApp')
     $scope.openListView = function() {
     	$location.path('/list');
     };
+
+    $scope.isActive = function(route) {
+      return route === $location.path();
+    };
   });

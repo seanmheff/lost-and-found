@@ -1,6 +1,5 @@
-div(ng-include='"components/sidebar/sidebar.html"')
+div(ng-include='"components/sidebar/sidebar.html"', style="height:100%;")
 .col-sm-9
-  p This is the list view.
   ul.list-group
     li.list-group-item(ng-repeat="item in items")
       .row
