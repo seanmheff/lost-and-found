@@ -13,7 +13,8 @@ var ItemSchema = new Schema({
   dateAdded: {
   	type: Date, 
   	default: Date.now
-  }
+  },
+  category: Schema.Types.ObjectId
 });
 
 
