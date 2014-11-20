@@ -14,7 +14,10 @@ var ItemSchema = new Schema({
   	type: Date, 
   	default: Date.now
   },
-  category: Schema.Types.ObjectId
+  category: {
+    type: Schema.Types.ObjectId,
+    ref: 'Category'
+  }
 });
 
 

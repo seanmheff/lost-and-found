@@ -1,32 +1,25 @@
 'use strict';
 
 var itemIconClasses = {
-  'electronics': 'glyphicon glyphicon-phone',
+  'Electronics': 'glyphicon glyphicon-phone',
   'misc': 'glyphicon glyphicon-star-empty',
   'personal': 'glyphicon glyphicon-briefcase',
 };
 
 angular.module('lostAndFoundApp')
-  .controller('ListCtrl', function ($scope) {
-    $scope.message = 'Hello';
+  .controller('ListCtrl', function ($scope, $http, socket) {
+    $scope.items = [];
 
-    $scope.items = [
-      {
-        heading: "Bag of weed found on Glann Road.",
-        type: "misc",
-        time: new Date()
-      },
-      {
-        heading: "Wallet found in Eye Cinema",
-        type: "personal",
-        time: new Date()
-      },
-      {
-        heading: "Nokia 3510i found at Tesco.",
-        type: "electronics",
-        time: new Date()
-      },
-    ];
+    $http.get('/api/items').success(function(items) {
+      $scope.items = items;
+      socket.syncUpdates('item', $scope.items);
+    });
+
+
+    $scope.$on('$destroy', function () {
+      socket.unsyncUpdates('item');
+    });
+
 
     /**
      * A function that gets an items icon CSS class.
@@ -34,6 +27,6 @@ angular.module('lostAndFoundApp')
      * @return {string}
      */
     $scope.getIconClass = function(itemType) {
-      return itemIconClasses[itemType];
+      return itemIconClasses[itemType] || 'glyphicon glyphicon-pushpin';
     };
   });
