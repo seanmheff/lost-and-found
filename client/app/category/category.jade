@@ -1,0 +1,8 @@
+.col-md-12
+	p This is where the site admin can add new categories
+	ul(ng-repeat="category in categories")
+		li {{category.name}} - (Added {{category.dateAdded | date:'mediumDate'}})
+
+	input.form-control(type='text', placeholder='Add a new category here.', ng-model='newCategory')
+	span.input-group-btn
+		button.btn.btn-primary(type='submit', ng-click='addCategory()') Add New
