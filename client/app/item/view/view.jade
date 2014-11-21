@@ -1,9 +1,16 @@
-.col-sm-6
-	h1 {{item.title}}
-	img(ng-if="item.image" ng-src="/images/{{item.image}}")
+.col-sm-8
+  .panel.panel-default
+    .panel-heading
+      h4 {{item.title}}
+      | Added {{item.dateAdded | date:'medium'}}
+    .panel-body
+      p {{item.description}}
+      img(ng-if="item.image" ng-src="/images/{{item.image}}")
 
-.col-sm-6
-	h1 {{item.dateAdded | date:'medium'}}
+.col-sm-4
+  .panel.panel-default
+    .panel-body
+      ui-gmap-google-map(ng-if="item.location" center="item.location" zoom="12" ng-style="{'width':'200px'}")
+        ui-gmap-marker(coords="item.location" idKey="item._id")
 
-	ui-gmap-google-map(ng-if="item.location" center="item.location" zoom="12" ng-style="{'width':'200px'}")
-		ui-gmap-marker(coords="item.location" idKey="item._id")
+
