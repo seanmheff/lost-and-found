@@ -1,13 +1,7 @@
 'use strict';
 
-var itemIconClasses = {
-  'Electronics': 'glyphicon glyphicon-phone',
-  'misc': 'glyphicon glyphicon-star-empty',
-  'personal': 'glyphicon glyphicon-briefcase',
-};
-
 angular.module('lostAndFoundApp')
-  .controller('ListCtrl', function ($scope, $http, socket) {
+  .controller('ListCtrl', function ($scope, $http, socket, category) {
     $scope.items = [];
 
     $http.get('/api/items').success(function(items) {
@@ -15,11 +9,9 @@ angular.module('lostAndFoundApp')
       socket.syncUpdates('item', $scope.items);
     });
 
-
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('item');
     });
-
 
     /**
      * A function that gets an items icon CSS class.
@@ -27,6 +19,6 @@ angular.module('lostAndFoundApp')
      * @return {string}
      */
     $scope.getIconClass = function(itemType) {
-      return itemIconClasses[itemType] || 'glyphicon glyphicon-pushpin';
+      return category.getIconClass(itemType);
     };
   });

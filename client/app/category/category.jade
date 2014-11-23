@@ -1,8 +1,18 @@
-.col-md-12
-	p This is where the site admin can add new categories
-	ul(ng-repeat="category in categories")
-		li {{category.name}} - (Added {{category.dateAdded | date:'mediumDate'}})
+.col-sm-12
+  p This is where the site admin can add new categories
 
-	input.form-control(type='text', placeholder='Add a new category here.', ng-model='newCategory')
-	span.input-group-btn
-		button.btn.btn-primary(type='submit', ng-click='addCategory()') Add New
+  ul.list-group
+    li.list-group-item(ng-repeat="category in categories")
+      .row
+        .col-sm-9
+          i(ng-class="getIconClass(category.name)")
+          | {{category.name}}
+        .col-sm-3
+          small.text-right added at {{category.dateAdded | date:'mediumDate'}}
+          a.trash(ng-click='delete(category)')
+            span.glyphicon.glyphicon-trash.pull-right
+
+
+  input.form-control(type='text', placeholder='Add a new category here.', ng-model='newCategory')
+  span.input-group-btn
+    button.btn.btn-primary(type='submit', ng-click='addCategory()') Add New

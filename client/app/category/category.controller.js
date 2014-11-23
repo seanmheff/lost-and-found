@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lostAndFoundApp')
-  .controller('CategoryCtrl', function ($scope, $http, socket) {
+  .controller('CategoryCtrl', function ($scope, $http, socket, category) {
     $scope.categories = [];
 
     $http.get('/api/categories').success(function(categories) {
@@ -17,9 +17,18 @@ angular.module('lostAndFoundApp')
       $scope.newCategory = '';
     };
 
-    // $scope.deleteThing = function(thing) {
-    //   $http.delete('/api/things/' + thing._id);
-    // };
+    $scope.delete = function(category) {
+      $http.delete('/api/categories/' + category._id);
+    };
+
+    /**
+     * A function that gets an items icon CSS class.
+     * @param {string} itemType - The item type.
+     * @return {string}
+     */
+    $scope.getIconClass = function(itemType) {
+      return category.getIconClass(itemType);
+    };
 
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('category');
