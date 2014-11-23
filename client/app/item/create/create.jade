@@ -1,0 +1,25 @@
+.col-sm-12
+  .panel.panel-default
+    .panel-heading
+      .panel-title
+        h4 Add an item
+    .panel-body
+      form.form.form-vertical
+        .control-group
+          label Title
+          .controls
+            input.form-control(type='text', placeholder='What did you find?')
+        .control-group
+          label Description
+          .controls
+            textarea.form-control(placeholder='Describe the item you found, and where you found it.')
+        .control-group
+          label Category
+          .controls
+            select.form-control
+              option(ng-repeat="category in categories") {{category.name}}
+        .control-group
+          label
+          .controls
+            button.btn.btn-primary(type='submit')
+              | Post
