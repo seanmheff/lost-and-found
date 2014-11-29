@@ -7,7 +7,8 @@ angular.module('lostAndFoundApp', [
   'ngRoute',
   'btford.socket-io',
   'ui.bootstrap',
-  'google-maps'.ns()
+  'uiGmapgoogle-maps',
+  'flow'
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider
@@ -19,12 +20,28 @@ angular.module('lostAndFoundApp', [
     $httpProvider.interceptors.push('authInterceptor');
   })
 
-  .config(['GoogleMapApiProvider'.ns(), function (GoogleMapApi) {
-    GoogleMapApi.configure({
-        //    key: 'your api key',
-        v: '3.17',
-        libraries: 'weather,geometry,visualization'
+  .config(function(uiGmapGoogleMapApiProvider) {
+      uiGmapGoogleMapApiProvider.configure({
+          key: 'AIzaSyBZ0zQMEXYC5_uB_iTC4rgvXGQ4X7LjXqI',
+          v: '3.17',
+          libraries: 'places' // Required for SearchBox.
+      });
+  })
+
+  .config(['flowFactoryProvider', function (flowFactoryProvider) {
+    flowFactoryProvider.defaults = {
+      target: 'upload.php',
+      permanentErrors: [404, 500, 501],
+      maxChunkRetries: 1,
+      chunkRetryInterval: 5000,
+      simultaneousUploads: 4,
+      singleFile: false
+    };
+    flowFactoryProvider.on('catchAll', function (event) {
+      console.log('catchAll', arguments);
     });
+    // Can be used with different implementations of Flow.js
+    // flowFactoryProvider.factory = fustyFlowFactory;
   }])
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
