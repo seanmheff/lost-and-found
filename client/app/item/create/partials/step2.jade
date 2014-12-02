@@ -1,0 +1,25 @@
+.col-sm-8
+  .panel.panel-default
+    .panel-heading
+      .panel-title
+        h4 Show us where you found the item
+    .panel-body
+      script(id="searchbox.tpl.html" type='text/ng-template')
+        <input type="text" placeholder="Start typing an address..." id="searchbox">
+      //- ui-gmap-google-map(center='map.center', zoom='map.zoom', draggable='true', options='options')
+      ui-gmap-google-map(center='map.center', zoom='map.zoom', dragging='map.dragging', bounds='map.bounds', events='map.events', options='map.options', pan='true', control='map.control')
+
+        ui-gmap-search-box(template='searchbox.template', events="searchbox.events", position='searchbox.position')
+        ui-gmap-markers(idkey='map.idkey', models='map.markers', coords='"self"', icon='"icon"')
+
+
+
+.col-sm-4
+  p(ng-if="address") Chosen location:
+  p {{address}}
+  p {{name}}
+  .control-group
+    label
+    .controls
+      button.btn.btn-primary(ng-click='back()') Back
+      button.btn.btn-primary(ng-click='submit()' ng-if="address") And thats it! Add the item

@@ -9,6 +9,8 @@ var ItemSchema = new Schema({
   location: {
   	longitude: Number,
   	latitude: Number,
+    address: String,
+    name: String
   },
   dateAdded: {
   	type: Date, 

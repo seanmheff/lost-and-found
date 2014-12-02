@@ -1,7 +1,7 @@
 div(ng-include='"components/sidebar/sidebar.html"', style="height:100%;")
 .col-sm-9
   ul.list-group
-    li.list-group-item(ng-repeat="item in items")
+    li.list-group-item(ng-repeat="item in items | orderBy:'dateAdded':true")
       .row
         .col-sm-9
           a(href='/view/{{item._id}}')

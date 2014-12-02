@@ -10,7 +10,7 @@
 .col-sm-4
   .panel.panel-default
     .panel-body
-      ui-gmap-google-map(ng-if="item.location" center="item.location" zoom="12" ng-style="{'width':'200px'}")
+      ui-gmap-google-map(ng-if="item.location" center="map.center" zoom="12" ng-style="{'width':'200px'}")
         ui-gmap-marker(coords="item.location" idKey="item._id")
 
 

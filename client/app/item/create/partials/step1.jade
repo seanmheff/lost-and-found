@@ -1,0 +1,40 @@
+.col-sm-8
+  .panel.panel-default
+    .panel-heading
+      .panel-title
+        h4 Tell us about the item you found
+    .panel-body
+      .control-group
+        label Title
+        .controls
+          input.form-control(type='text', placeholder='What did you find?' ng-model='item.title', required='')
+      .control-group
+        label Description
+        .controls
+          textarea.form-control(placeholder='Describe the item you found, and where you found it.', ng-model='item.description', required='')
+      .control-group
+        label Category
+        .controls
+          select.form-control(ng-model='item.category', ng-options="category._id as category.name for category in categories", required='') {{category.name}}
+      .control-group
+        label Add image(s)
+        .controls
+          div(flow-init='', flow-files-submitted='$flow.upload()', flow-file-added='!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]')
+            .drop(flow-drop='', ng-class='dropClass')
+              span.btn.btn-primary(flow-btn='') Upload Image
+              strong  OR
+              span  Drag And Drop your images here
+            br
+            .gallery-box(ng-repeat='file in $flow.files')
+              .thumbnail(ng-show='$flow.files.length')
+                img(flow-img='file')
+              .progress.progress-striped(ng-class='{active: file.isUploading()}')
+                .progress-bar(role='progressbar', aria-valuenow='{{file.progress() * 100}}', aria-valuemin='0', aria-valuemax='100', ng-style='{width: (file.progress() * 100) + "%"}')
+                  span.sr-only {{file.progress()}}% Complete
+              .btn-group
+                a.btn.btn-xs.btn-danger(ng-click='file.cancel()')
+                  | Remove
+      .control-group
+        label
+        .controls
+          button.btn.btn-primary(ng-click='forward()') Next
