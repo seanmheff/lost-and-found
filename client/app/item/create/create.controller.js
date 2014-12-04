@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('lostAndFoundApp')
-  .controller('CreateCtrl', function ($scope, $http) {
+  .controller('CreateCtrl', function ($scope, $http, $location) {
     $scope.categories = [];
     $scope.item = {};
 
@@ -121,10 +121,10 @@ angular.module('lostAndFoundApp')
         }
       };
 
-      console.log(item);
-      console.log("***********************")
-
-      $http.post('/api/items', item);
+      $http.post('/api/items', item)
+        .success(function(item) {
+          $location.path('/view/' + item._id);
+      });
     };
 
   });
