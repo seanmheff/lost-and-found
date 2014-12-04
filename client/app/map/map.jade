@@ -9,6 +9,6 @@ div(ng-include='"components/sidebar/sidebar.html"')
 
   .panel.panel-default
     .panel-body
-      ui-gmap-google-map(center="map.center" zoom="map.zoom")
+      ui-gmap-google-map(center='map.center', zoom='map.zoom', dragging='map.dragging', bounds='map.bounds')
         //- ui-gmap-search-box(template="searchbox.tpl.html" position="sdsd")
-        ui-gmap-marker(ng-repeat="marker in markers" coords="marker" idKey="$index")
+        ui-gmap-marker(ng-repeat="marker in map.markers" coords="marker" idKey="$index")
