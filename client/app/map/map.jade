@@ -4,11 +4,12 @@ script(type="text/ng-template" id="searchbox.tpl.html")
 
 div(ng-include='"components/sidebar/sidebar.html"')
 .col-sm-9
-  p This is the map view.
-
-
   .panel.panel-default
-    .panel-body
-      ui-gmap-google-map(center='map.center', zoom='map.zoom', dragging='map.dragging', bounds='map.bounds')
+    .panel-body.default-size
+      .loading(ng-hide="mapLoaded")
+        img#spinner(ng-src="assets/images/loader.svg")
+        p Getting your location...
+
+      ui-gmap-google-map(center='map.center', zoom='map.zoom', dragging='map.dragging', bounds='map.bounds' ng-if="mapLoaded")
         //- ui-gmap-search-box(template="searchbox.tpl.html" position="sdsd")
         ui-gmap-marker(ng-repeat="marker in map.markers" coords="marker" idKey="$index")
