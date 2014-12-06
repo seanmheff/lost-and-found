@@ -9,7 +9,7 @@ angular.module('lostAndFoundApp')
         latitude: 40.74349,
         longitude: -73.990822
       },
-      zoom: 12,
+      zoom: 14,
       dragging: false,
       bounds: {}
     };
@@ -45,13 +45,21 @@ angular.module('lostAndFoundApp')
       
       Location.getLocation(function(err, location) {
         if (err) { 
-          console.log(err); 
+          console.log(err);
+          // Use a default centre
+          $scope.map.zoom = 12;
+          $scope.map.center = {
+            latitude: 40.74349,
+            longitude: -73.990822
+          };
         } else {
           $scope.map.center = angular.copy(location);
           $scope.map.markers = [location];
-          $scope.mapLoaded = true;
-          $rootScope.$$phase || $rootScope.$apply();
         }
+        
+        // Update the view
+        $scope.mapLoaded = true;
+        $rootScope.$$phase || $rootScope.$apply();
       });
 
     });

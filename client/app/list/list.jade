@@ -3,9 +3,9 @@ div(ng-include='"components/sidebar/sidebar.html"', style="height:100%;")
   ul.list-group
     li.list-group-item(ng-repeat="item in items | orderBy:'dateAdded':true")
       .row
-        .col-sm-9
+        .col-sm-8
           a(href='/view/{{item._id}}')
             i(ng-class="getIconClass(item.category.name)")
             | {{item.title}}
-        .col-sm-3
-          small.text-right added at {{item.dateAdded | date:'h:mm a'}}
+        .col-sm-4
+          small.pull-right {{item.dateAdded | date:'medium'}}
