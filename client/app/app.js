@@ -37,7 +37,7 @@ angular.module('lostAndFoundApp', [
       simultaneousUploads: 4,
       singleFile: false
     };
-    flowFactoryProvider.on('catchAll', function (event) {
+    flowFactoryProvider.on('catchAll', function () {
       console.log('catchAll', arguments);
     });
     // Can be used with different implementations of Flow.js

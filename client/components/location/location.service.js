@@ -16,7 +16,7 @@ angular.module('lostAndFoundApp')
         if (location) {
           callback(null, location);
         } else {
-          if ("geolocation" in navigator) {
+          if ('geolocation' in navigator) {
             navigator.geolocation.getCurrentPosition(function(position) {
               location = {
                 latitude: position.coords.latitude,
@@ -24,10 +24,10 @@ angular.module('lostAndFoundApp')
               };
               callback(null, location);
             }, function(err) {
-              callback(err)
+              callback(err);
             });
           } else {
-            callback("/* geolocation IS NOT available */");
+            callback('/* geolocation IS NOT available */');
           }          
         }
   		}

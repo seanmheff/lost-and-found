@@ -9,14 +9,14 @@ angular.module('lostAndFoundApp')
       $scope.categories = categories;
     });
 
-  	var index = 0;
-		$scope.items = ['step1', 'step2'];
-	  $scope.selection = $scope.items[index];
+    var index = 0;
+    $scope.items = ['step1', 'step2'];
+    $scope.selection = $scope.items[index];
 
     /**
      * A function to go forward one step.
      */
-	  $scope.forward = function() {
+    $scope.forward = function() {
       $scope.selection = $scope.items[++index];
     };
 
@@ -49,7 +49,7 @@ angular.module('lostAndFoundApp')
     var userHasSearched = function(searchBox) {
       // Get the places the Map API has found
       var places = searchBox.getPlaces();
-      if (places.length == 0) {
+      if (places.length === 0) {
         return;
       }
 
@@ -58,7 +58,8 @@ angular.module('lostAndFoundApp')
       var bounds = new google.maps.LatLngBounds();
       
       // For each place, get the icon, place name, and location.
-      for (var i=0, place; place=places[i]; i++) {
+      for (var i=0; i<places.length; i++) {
+        var place = places[i];
         // Create a marker for each place.
         var marker = {
           id:i,
@@ -85,7 +86,7 @@ angular.module('lostAndFoundApp')
           latitude: bounds.getSouthWest().lat() - 0.005,
           longitude: bounds.getSouthWest().lng() - 0.005
         }
-      }
+      };
       
       // Display the selected address to the user
       if (places.length === 1) {
@@ -97,7 +98,7 @@ angular.module('lostAndFoundApp')
 
       // Add the markers to the map
       $scope.map.markers = newMarkers;
-    }
+    };
 
     $scope.searchbox = { 
       template:'searchbox.tpl.html',
